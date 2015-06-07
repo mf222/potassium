@@ -1,4 +1,4 @@
-module TemplateHelpers
+module Potassium::DSL::TemplateHelpers
   def eval_file(source)
     location = File.expand_path(find_in_source_paths(source))
     unique_name = SecureRandom.hex
@@ -10,9 +10,9 @@ module TemplateHelpers
     public_send unique_name
   end
 
-  def source_path(path)
+  def source_paths(paths)
     define_singleton_method :source_paths do
-      [File.expand_path(File.dirname(path))]
+      paths
     end
   end
 

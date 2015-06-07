@@ -1,4 +1,4 @@
-module VariableHelpers
+module Potassium::DSL::VariableHelpers
   def set(key, value)
     @_data ||= {}
     @_data[key] = value

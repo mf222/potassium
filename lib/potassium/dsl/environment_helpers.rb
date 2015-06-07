@@ -1,4 +1,4 @@
-module EnvironmentHelpers
+module Potassium::DSL::EnvironmentHelpers
   def set_env(key, value)
     ensure_variable(:default_env, {})
     get(:default_env)[key] = value

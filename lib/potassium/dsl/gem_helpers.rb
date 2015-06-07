@@ -1,4 +1,4 @@
-module GemHelpers
+module Potassium::DSL::GemHelpers
   def gather_gem(name, *attributes)
     ensure_variable(:gems, {})
     current_gem_groups = get(:current_gem_groups) || [:base]

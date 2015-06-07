@@ -8,8 +8,9 @@ default_env({
   'DB_PASSWORD' => ''
 })
 
-run_action(:cleaning) do
+run_action(:setup) do
   clean_gemfile
+  gather_gem('potassium', Potassium::VERSION)
   gather_gem('spring')
 end
 

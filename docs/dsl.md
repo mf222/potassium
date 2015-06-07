@@ -180,7 +180,7 @@ discard_gem('sqlite3')
 This removes everything from the Gemfile, adds the `source 'https://rubygems.org'` line in the top, reads from the `gemfile_entries` array, which holds the original gems that rails created, and add them to the hash of gems. Example:
 
 ```ruby
-run_action(:cleaning) do
+run_action(:setup) do
   clean_gemfile
   # After that, the Gemfile is empty
 end
