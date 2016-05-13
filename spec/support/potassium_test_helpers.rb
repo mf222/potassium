@@ -10,13 +10,19 @@ module PotassiumTestHelpers
   end
 
   def create_dummy_project(arguments = {})
-    Dir.chdir(tmp_path) do
-      Bundler.with_clean_env do
-        add_fakes_to_path
-        full_arguments = hash_to_arguments(default_arguments.merge(arguments))
-        run_command("#{potassium_bin} create #{APP_NAME} #{full_arguments}")
-      end
-    end
+    dummy = "dummy_app"
+    dummy = "dummy_app_heroku" if arguments.keys.include?("heroku")
+    dummy = "dummy_app_github" if arguments.keys.include?("github")
+    dummy = "dummy_app_github_private" if arguments.keys.include?("github-private")
+    source = "spec/projects/#{dummy}"
+    destination = "#{tmp_path}/dummy_app"
+    FileUtils.copy_entry(source, destination)
+    create_dummy_database
+  end
+
+  def create_dummy_database
+    return unless File.exist?(project_path)
+    on_project { run_command("bundle exec rake db:setup") }
   end
 
   def drop_dummy_database
