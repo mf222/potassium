@@ -1,11 +1,10 @@
-class Recipes::Paperclip < Rails::AppBuilder
+class Recipes::Paperclip < Recipes::Base
   def ask
-    paperclip = answer(:paperclip) { Ask.confirm("Do you want to use Paperclip for uploads?") }
-    set(:paperclip, paperclip)
+    enabled answer(:paperclip) { Ask.confirm("Do you want to use Paperclip for uploads?") }
   end
 
   def create
-    add_paperclip if selected?(:paperclip)
+    add_paperclip if enabled
   end
 
   def install
@@ -19,7 +18,7 @@ class Recipes::Paperclip < Rails::AppBuilder
   private
 
   def add_paperclip
-    gather_gem 'paperclip', '~> 4.3'
+    # gather_gem 'paperclip', '~> 4.3'
     paperclip_config =
       <<-RUBY.gsub(/^ {7}/, '')
          config.paperclip_defaults = {

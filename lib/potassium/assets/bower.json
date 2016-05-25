@@ -1,4 +1,4 @@
 {
-  "name": "<%= @app_name.camelcase %>",
+  "name": "<%= get(:underscorized_app_name).camelcase %>",
   "version": "1.0.0"
 }

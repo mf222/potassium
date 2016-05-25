@@ -1,7 +1,5 @@
-class Recipes::Heroku < Rails::AppBuilder
+class Recipes::Heroku < Recipes::Base
   NAME_PREFIX = 'pl'
-
-  attr_accessor :app_name_staging
 
   def initialize(args)
     super(args)
@@ -10,17 +8,13 @@ class Recipes::Heroku < Rails::AppBuilder
   end
 
   def ask
-    heroku = answer(:heroku) do
+    enabled answer(:heroku) do
       Ask.confirm("Are you going to deploy to heroku? (#{who_am_i})")
-    end
-
-    if heroku
-      set(:heroku, heroku)
     end
   end
 
   def create
-    add_heroku if get(:heroku)
+    add_heroku if enabled
   end
 
   def install

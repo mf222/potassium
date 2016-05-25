@@ -22,7 +22,7 @@ class Recipes::Database < Rails::AppBuilder
   end
 
   def install
-    ask
+    ask unless get(:database)
     create
   end
 
@@ -40,10 +40,10 @@ class Recipes::Database < Rails::AppBuilder
     remove_file 'config/database.yml'
     template "../assets/config/database_#{db[:name]}.yml.erb", 'config/database.yml'
     discard_gem 'sqlite3'
-    if db[:version]
-      gather_gem db[:gem_name], db[:version]
-    else
-      gather_gem db[:gem_name]
-    end
+    # if db[:version]
+    #   gather_gem db[:gem_name], db[:version]
+    # else
+    #   gather_gem db[:gem_name]
+    # end
   end
 end
