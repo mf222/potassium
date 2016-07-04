@@ -11,7 +11,6 @@ class Recipes::MigrateFromNegroku < Rails::AppBuilder
     run_recipe :script
     run_recipe :puma
     run_recipe :pry
-    run_recipe :staging
     run_recipe :production
     run_recipe :bower
     run_recipe :delayed_job if gem_exists?(/delayed_job/)
