@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+- 2.3.1
+env:
+  - TEST_SUITE=ci
+  - TEST_SUITE=github
+  - TEST_SUITE=heroku
+  - TEST_SUITE=new_project
+before_install:
+  - gem install hound-cli
+script:
+  - bundle exec rspec spec/features/${TEST_SUITE}_spec.rb
+cache: bundler
