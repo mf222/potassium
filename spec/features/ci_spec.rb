@@ -9,6 +9,6 @@ RSpec.describe "A new project" do
   end
 
   it "correctly runs continous integration" do
-    expect { on_project { `bin/cibuild` } }.to_not output.to_stderr
+    expect { on_project { `CIRCLE_TEST_REPORTS=$(pwd) bin/cibuild` } }.to_not output.to_stderr
   end
 end
