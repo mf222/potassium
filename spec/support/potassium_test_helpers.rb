@@ -11,12 +11,10 @@ module PotassiumTestHelpers
 
   def create_dummy_project(arguments = {})
     Dir.chdir(tmp_path) do
-      Bundler.with_clean_env do
-        add_fakes_to_path
-        full_arguments = hash_to_arguments(default_arguments.merge(arguments))
-        run_command("#{potassium_bin} create #{APP_NAME} #{full_arguments}")
-        on_project { run_command("hound rules update ruby --local") }
-      end
+      add_fakes_to_path
+      full_arguments = hash_to_arguments(default_arguments.merge(arguments))
+      run_command("#{potassium_bin} create #{APP_NAME} #{full_arguments}")
+      on_project { run_command("hound rules update ruby --local") }
     end
   end
 
@@ -35,9 +33,7 @@ module PotassiumTestHelpers
 
   def on_project(&block)
     Dir.chdir(project_path) do
-      Bundler.with_clean_env do
-        block.call
-      end
+      block.call
     end
   end
 
