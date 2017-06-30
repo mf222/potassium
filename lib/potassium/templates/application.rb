@@ -62,16 +62,16 @@ run_action(:recipe_loading) do
   create :pundit
   create :testing
   create :secrets
-  create :api
-  create :draper
   create :power_types
   create :rack_cors
   create :paperclip
   create :tzinfo
+  create :api
+  create :draper
   create :script
   create :github
-  create :cleanup
   create :front_end
+  create :cleanup
 end
 
 info "Gathered enough information. Applying the template. Wait a minute."

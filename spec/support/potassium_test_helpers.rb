@@ -20,7 +20,7 @@ module PotassiumTestHelpers
       Bundler.with_clean_env do
         add_fakes_to_path
         full_arguments = hash_to_arguments(create_arguments(true).merge(arguments))
-        run_command("#{potassium_bin} create #{APP_NAME} #{full_arguments}")
+        run_command("#{potassium_bin} create #{APP_NAME} #{full_arguments} --no-version-check")
         on_project { run_command("hound rules update ruby --local") }
       end
     end
